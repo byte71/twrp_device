@@ -3,14 +3,21 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 # Mount point		FS		Device									Flags
-/boot				emmc	/dev/block/platform/15540000.dwmmc0/by-name/BOOT
-/recovery				emmc	/dev/block/platform/15540000.dwmmc0/by-name/RECOVERY
-/cache			ext4	/dev/block/platform/15540000.dwmmc0/by-name/CACHE
-/system			ext4	/dev/block/platform/15540000.dwmmc0/by-name/SYSTEM
-/system_image		emmc	/dev/block/platform/15540000.dwmmc0/by-name/SYSTEM		flags=backup=1;flashimg=1
-/vendor			ext4	/dev/block/platform/15540000.dwmmc0/by-name/VENDOR		flags=display=Vendor;backup=1;wipeingui
-/vendor_image		emmc	/dev/block/platform/15540000.dwmmc0/by-name/VENDOR		flags=backup=1;flashimg=1
-/data				ext4	/dev/block/platform/15540000.dwmmc0/by-name/USERDATA		flags=encryptable=footer;length=-16384
-
+/system		ext4	/dev/block/platform/15540000.dwmmc0/by-name/SYSTEM
+/system_image emmc /dev/block/platform/15540000.dwmmc0/by-name/SYSTEM
+/data		ext4	/dev/block/platform/15540000.dwmmc0/by-name/USERDATA flags=length=-20480
+/vendor	ext4	/dev/block/platform/15540000.dwmmc0/by-name/VENDOR   flags=backup=1;wipeingui;display="Vendor" 
+/vendor_image emmc /dev/block/platform/15540000.dwmmc0/by-name/VENDOR       flags=backup=1;display="Vendor image"
+/cache		ext4	/dev/block/platform/15540000.dwmmc0/by-name/CACHE
+/preload	ext4	/dev/block/platform/15540000.dwmmc0/by-name/HIDDEN	 flags=backup=1;wipeingui;display="Preload"
+/boot		emmc	/dev/block/platform/15540000.dwmmc0/by-name/BOOT	 flags=backup=1;display="boot"
+/recovery	emmc	/dev/block/platform/15540000.dwmmc0/by-name/RECOVERY flags=backup=1;display="Recovery"
+/modem		emmc	/dev/block/platform/15540000.dwmmc0/by-name/RADIO    flags=backup=1;display="Modem";flashimg
+/efs		ext4	/dev/block/platform/15540000.dwmmc0/by-name/EFS	     flags=backup=1;display="EFS"
+/efs1		emmc	/dev/block/platform/15540000.dwmmc0/by-name/m9kefs1	flags=backup=1;subpartitionof=/efs
+/efs2		emmc	/dev/block/platform/15540000.dwmmc0/by-name/m9kefs2	flags=backup=1;subpartitionof=/efs
+/efs3		emmc	/dev/block/platform/15540000.dwmmc0/by-name/m9kefs3	flags=backup=1;subpartitionof=/efs
+/misc       emmc    /dev/block/platform/15540000.dwmmc0/by-name/OTA
 # External storage
-/sdcard1			vfat	/dev/block/mmcblk1p1 /dev/block/mmcblk1	flags=fsflags=utf8;display=SDcard;storage;wipeingui;removable
+/external_sd	vfat	/dev/block/mmcblk1p1 /dev/block/mmcblk1	         flags=fsflags=utf8;display=SDcard;storage;wipeingui;removable
+/usb-otg	vfat	/dev/block/sda1  /dev/block/sda				         flags=display="USB-OTG";storage;wipeingui;removable
